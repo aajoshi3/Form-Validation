@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Validation</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" integrity="sha512-PgQMlq+nqFLV4ylk1gwUOgm6CtIIXkKwaIHp/PAIWHzig/lKZSEGKEysh0TCVbHJXCLN7WetD8TFecIky75ZfQ==" crossorigin="anonymous" />
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Girassol&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="container">
+    
+    <form id="form" class="form">
+        <div class="form-control">
+            <label for="username">Username</label>
+            <input type="text" placeholder="Enter your name" id="username" />
+            <i class="fas fa-check-circle"></i>
+            <i class="fas fa-exclamation-circle"></i><br><br>
+            <small>Error message</small>
+        </div>
+        <button>Submit</button>
+    </form>
+</div>
+
+<script>
+
+
+const form = document.getElementById('form');
+const username = document.getElementById('username');
+
+
+
+form.addEventListener('submit', e => {
+e.preventDefault();    
+checkInputs();
+});
+
+function checkInputs() {
+// trim to remove the emptyspaces
+const usernameValue = username.value.trim()
+
+if(usernameValue === '') {
+ setErrorFor(username, 'Username cannot be empty');
+} else {
+setSuccessFor(username);
+}
+
+}
+
+function setErrorFor(input, message) {
+const formControl = input.parentElement;
+const small = formControl.querySelector('small');
+formControl.className = 'form-control error';
+small.innerText = message;
+}
+
+function setSuccessFor(input) {
+const formControl = input.parentElement;
+formControl.className = 'form-control success';
+}
+</script>  
+
+</body>
+</html>
